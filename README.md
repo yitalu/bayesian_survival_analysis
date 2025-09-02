@@ -26,12 +26,13 @@ Kaplan-Meier survival curves visualize survival probabilities over time. The cur
 
 ## Exponential Model
 
+
 ### The Model
 Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $ S(t) = e^{-\lambda t} $ and $ h(t) = \lambda $, where $\lambda$ is the rate parameter.
 
 In [04_fit_exponential.stan](code/04_fit_exponential.stan), the observed survival times are modeled using an exponential distribution,
 
-$$t_{observed} \sim Exponential(\lambda),$$
+$$t_{obs} \sim Exponential(\lambda),$$
 
 with prior
 
@@ -54,8 +55,8 @@ $$ \space log \space p(\space t_{obs}, t_{cen}, N_{cen} \space | \space \lambda)
 which belongs to the model block in the Stan script.
 
 
-### The Estimates
 
+### The Estimates
 The model produces a posterior sample for the $\lambda$ parameter, with a mean $0.008$ and a $95\%$ credible interval between $0.007$ and $0.009$.
 
 <p align="center">
@@ -74,4 +75,34 @@ Using this sample of the $\lambda$ parameter, we can also plot the posterior dis
 
 <p align="center">
     <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="45%">
+</p>
+
+
+
+### Exponential Model with Covariates
+From the [Kaplan-Meier Survival Curves](#kaplan-meier-survival-curves) section, we can tell that senior and non-senior patients have distinct survival probabilities. Here we estimate respective survival curve for each of the age group by linking the covariate *senior* (see the beginning part of the R code [02_plot_km_curve.R](02_plot_km_curve.R)) to the rate parameter:
+
+$$ \lambda = exp( \mu  + X \cdot \beta ),$$
+
+where $\mu$ and $\beta$ have priors
+
+$$\mu \sim Normal(0, \space 2)$$
+$$\beta \sim Normal(0, \space 2)$$
+
+<br>
+This applies to both the observed and cencored covariate. Thus,
+
+$$t_{obs} \sim Exponential(\space exp( \mu  + X_{obs} \cdot \beta ) \space),$$
+
+and the cumulative distribution function in the likelihood
+
+$$F_{T} = (\space t_{cen} \space | \space exp( \mu  + X_{cen} \cdot \beta ) \space).$$
+
+
+
+### The Estimates of Age Effect
+The estimate
+
+<p align="center">
+    <img src="./figures/posterior_survival_exponential_by_seniority.png" alt="Estimate Table Exponential" width="45%">
 </p>
