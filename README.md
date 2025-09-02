@@ -70,8 +70,8 @@ The model produces a posterior sample for the $\lambda$ parameter, with a mean $
 Using this sample of the $\lambda$ parameter, we can also plot the posterior distribution of event time and a posterior survival curve:
 
 <p align="center">
-    <img src="./figures/posterior_event_time_exponential.png" alt="Estimate Table Exponential" width="50%">
-    <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="50%">
+    <img src="./figures/posterior_event_time_exponential.png" alt="Estimate Table Exponential" width="49%">
+    <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="49%">
 </p>
 
 
@@ -101,5 +101,5 @@ $$F_{T} = (\space t_{cen} \space | \space exp( \mu  + X_{cen} \cdot \beta ) \spa
 The estimate
 
 <p align="center">
-    <img src="./figures/posterior_survival_exponential_by_seniority.png" alt="Estimate Table Exponential" width="45%">
+    <img src="./figures/posterior_survival_exponential_by_seniority.png" alt="Estimate Table Exponential" width="50%">
 </p>
