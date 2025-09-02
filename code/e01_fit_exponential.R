@@ -1,7 +1,3 @@
-d <- veteran # randomised trial of two treatment regimens for lung cancer
-View(d)
-
-
 library(rstan)
 
 # data_list <- list(
@@ -23,7 +19,7 @@ data_list <- list(
 )
 
 fit_exponential <- rstan::stan(
-    file = "code/04_fit_exponential.stan",
+    file = "code/e02_fit_exponential.stan",
     data = data_list,
     chains = 4,
     cores = 4,

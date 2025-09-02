@@ -26,6 +26,7 @@ Kaplan-Meier survival curves visualize survival probabilities over time. The cur
 
 ## Exponential Model
 
+### The Model
 Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $ S(t) = e^{-\lambda t} $ and $ h(t) = \lambda $, where $\lambda$ is the rate parameter.
 
 In [04_fit_exponential.stan](code/04_fit_exponential.stan), the observed survival times are modeled using an exponential distribution,
@@ -51,3 +52,26 @@ Taking logarithm of the likelihood, we have:
 $$ \space log \space p(\space t_{obs}, t_{cen}, N_{cen} \space | \space \lambda) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs} | \lambda) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen} | \lambda) \space]. $$
 
 which belongs to the model block in the Stan script.
+
+
+### The Estimates
+
+The model produces a posterior sample for the $\lambda$ parameter, with a mean $0.008$ and a $95\%$ credible interval between $0.007$ and $0.009$.
+
+<p align="center">
+    <img src="./figures/estimate_table_exponential.png" alt="Estimate Table Exponential" width="45%">
+</p>
+
+<p align="center">
+    <img src="./figures/estimate_barplot_exponential.png" alt="Estimate Table Exponential" width="45%">
+</p>
+
+Using this sample of the $\lambda$ parameter, we can also plot the posterior distribution of event time and a posterior survival curve:
+
+<p align="center">
+    <img src="./figures/posterior_event_time_exponential.png" alt="Estimate Table Exponential" width="45%">
+</p>
+
+<p align="center">
+    <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="45%">
+</p>
