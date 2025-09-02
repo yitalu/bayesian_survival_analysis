@@ -44,13 +44,13 @@ The Stan user guide provides tips on how to code the likelihood function for an 
 
 Instead of a single cencoring time, $t_{cen}$, we need different cencoring times for different individuals, denoted as $t_{cen, \space j}$, $j = 1, 2, ..., N_{cen}$. For the observed event times, we keep the same notation, $t_{obs, \space i}$, $i = 1, 2, ..., N_{obs}$. The likelihood is then specified as 
 
-$$ \space p(\space t_{obs}, t_{cen}, N_{cen} \space | \space \lambda) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} | \lambda) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} | \lambda)) ,$$
+$$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \space | \space \lambda) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} | \lambda) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} | \lambda)) ,$$
 
 where $F_{T}(t_{cen} | \lambda)$ is the cumulative distribution function (CDF) of the exponential distribution evaluated at the censored times.
 
 Taking logarithm of the likelihood, we have:
 
-$$ \space log \space p(\space t_{obs}, t_{cen}, N_{cen} \space | \space \lambda) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs} | \lambda) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen} | \lambda) \space]. $$
+$$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \space | \space \lambda) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} | \lambda) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} | \lambda) \space]. $$
 
 which belongs to the model block in the Stan script.
 
