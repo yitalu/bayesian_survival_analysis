@@ -14,9 +14,9 @@ The project utilizes a very common dataset `veteran` from the `survival` package
 Kaplan-Meier survival curves visualize survival probabilities over time. The curves can also compare survival between different groups, such as treatment types. Using the veteran dataset, three Kaplan-Meier curves are plotted: overall survival, survival by treatment type (chemotherapy vs standard), and survival by age group (senior vs non-senior, with the threshold at age 65). These plots are generated using the `Surv` object and `survfit` function from the `survival` packages in R, and the code can be found in [02_plot_km_curve.R](code/02_plot_km_curve.R).
 
 <p align="center">
-    <img src="./figures/km_curve_all.png" alt="Kaplan-Meier Survival Curve" width="45%">
-    <img src="./figures/km_curve_treatment.png" alt="Kaplan-Meier Survival Curves by Treatment" width="45%">
-    <img src="./figures/km_curve_seniority.png" alt="Kaplan-Meier Survival Curves by Seniority" width="45%">
+    <img src="./figures/km_curve_all.png" alt="Kaplan-Meier Survival Curve" width="49%">
+    <img src="./figures/km_curve_treatment.png" alt="Kaplan-Meier Survival Curves by Treatment" width="49%">
+    <img src="./figures/km_curve_seniority.png" alt="Kaplan-Meier Survival Curves by Seniority" width="49%">
 </p>
 
 
@@ -70,8 +70,8 @@ The model produces a posterior sample for the $\lambda$ parameter, with a mean $
 Using this sample of the $\lambda$ parameter, we can also plot the posterior distribution of event time and a posterior survival curve:
 
 <p align="center">
-    <img src="./figures/posterior_event_time_exponential.png" alt="Estimate Table Exponential" width="50%">
-    <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="50%">
+    <img src="./figures/posterior_event_time_exponential.png" alt="Estimate Table Exponential" width="49%">
+    <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="49%">
 </p>
 
 
