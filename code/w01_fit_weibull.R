@@ -1,15 +1,5 @@
-library(survival)
-library(rstan)
-
-d <- veteran # randomised trial of two treatment regimens for lung cancer
-# View(d)
-colnames(d)
-
-# d$aged65 <- ifelse(d$age >= 65, 2, 1) # 1: age >= 65, 0: age < 65
-# d$treat_chemo <- ifelse(d$trt == 2, 2, 1) # 1: chemotherapy, 0: standard treatment
-
-# covariates <- c("treat_chemo", "age")
-# covariates <- c("treat_chemo")
+rm(list = ls())
+source("./code/01_load_data.R")
 
 data_list <- list(
     n_all = nrow(d),
@@ -26,7 +16,7 @@ data_list <- list(
 )
 
 fit_weibull <- rstan::stan(
-    file = "code/08_fit_weibull.stan",
+    file = "code/w02_fit_weibull.stan",
     data = data_list,
     chains = 4,
     cores = 4,

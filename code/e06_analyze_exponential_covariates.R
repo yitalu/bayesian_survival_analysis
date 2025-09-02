@@ -55,7 +55,7 @@ grid()
 n_individual <- 1000
 n_simulation <- 50
 
-png("./figures/posterior_event_time_exponential_covariates.png", width = 1800, height = 1200, res = 150)
+png("./figures/posterior_event_time_exponential_by_seniority.png", width = 1800, height = 1200, res = 150)
 
 plot(NULL, xlim = c(0, 1000), ylim = c(0, 0.011), main = "Posterior Distribution of Event Time by Exponential Model", xlab = "Event Time", ylab = "Density")
 

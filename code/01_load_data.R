@@ -1,4 +1,6 @@
 # Load necessary libraries and datasets
+library(rstan)
+
 
 # 1. survival ----
 library(survival)

@@ -26,7 +26,6 @@ Kaplan-Meier survival curves visualize survival probabilities over time. The cur
 
 ## Exponential Model
 
-
 ### The Model
 Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $S(t) = exp(-\lambda t)$ and $h(t) = \lambda$, where $\lambda$ is the rate parameter.
 
@@ -111,6 +110,36 @@ The estimates of the parameter $\mu$ and $\beta$ are shown in the below table an
 From these estimates, we can obtain the posterior distributions of event time and posterior survival curves for both the non-senior and senior age group accordingly:
 
 <p align="center">
-    <img src="./figures/posterior_event_time_exponential_covariates.png" alt="Estimate Table Exponential" width="49%">
+    <img src="./figures/posterior_event_time_exponential_by_seniority.png" alt="Estimate Table Exponential" width="49%">
     <img src="./figures/posterior_survival_exponential_by_seniority.png" alt="Estimate Table Exponential" width="49%">
+</p>
+
+
+
+
+<br>
+
+## Weibull Model
+
+## The Model
+Weibull Models are in fact a more general form of exponential. It has the flexibility to capture a varying rate in the hazard function, and in this case, fit the data better than the basic exponential model. I present the results here first, but more description will be added soon.
+
+[CONTENT TO BE ADDED SOON.]
+
+
+## The Estimates
+<p align="center">
+    <img src="./figures/posterior_event_time_weibull.png" alt="Estimate Table Exponential" width="49%">
+    <img src="./figures/posterior_survival_weibull.png" alt="Posterior Survival Curve Exponential" width="49%">
+</p>
+
+
+<!-- ## Weibull Model with Covariates -->
+
+
+
+## The Estimates of Age Effect
+<p align="center">
+    <!-- <img src="./figures/posterior_event_time_weibull_by_seniority.png" alt="Estimate Table Exponential" width="49%"> -->
+    <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Exponential" width="49%">
 </p>
