@@ -34,7 +34,7 @@ list(km_plot_treatment)
 png("./figures/km_curve_treatment.png", width = 1800, height = 1200, res = 150)
 
 plot(km_plot_treatment, xlab = "Time", ylab = "Survival Probability", main = "Kaplan-Meier Curves by Treatment Group", col = c("#1e90ff", "#f45e77"), lwd = 2)
-legend("topright", legend = c("Standard Treatment", "Chemotherapy"), col = c("#1e90ff", "#f45e77"), lwd = 2)
+legend("topright", inset = 0.02, legend = c("Standard Treatment", "Chemotherapy"), col = c("#1e90ff", "#f45e77"), lwd = 2)
 grid()
 
 dev.off()
@@ -50,7 +50,7 @@ list(km_plot_seniority)
 png("./figures/km_curve_seniority.png", width = 1800, height = 1200, res = 150)
 
 plot(km_plot_seniority, xlab = "Time", ylab = "Survival Probability", main = "Kaplan-Meier Curves by Age Group", col = c("#1e90ff", "#f45e77"), lwd = 2)
-legend("topright", legend = c("Non-Senior (Age < 65)", "Senior (Age ≥ 65)"), col = c("#1e90ff", "#f45e77"), lwd = 2)
+legend("topright", inset = 0.02, legend = c("Non-Senior (Age < 65)", "Senior (Age ≥ 65)"), col = c("#1e90ff", "#f45e77"), lwd = 2)
 grid()
 
 dev.off()

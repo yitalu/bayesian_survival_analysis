@@ -1,7 +1,34 @@
 summary(fit_exponential_covariates)
 print(fit_exponential_covariates, pars = c("mu", "beta"))
 
+
+library(gridExtra)
+library(grid)
+library(ggplot2)
+
+# 
+mu_beta_summary <- as.data.frame(summary(fit_exponential_covariates)$summary[c("mu", "beta"), , drop = FALSE])
+mu_beta_summary$Parameter <- rownames(mu_beta_summary)
+mu_beta_summary <- mu_beta_summary[, c("Parameter", colnames(mu_beta_summary)[1:(ncol(mu_beta_summary)-1)])]
+mu_beta_summary[ , -1] <- round(mu_beta_summary[ , -1], 3)
+
+# Create table grob
+table_grob <- tableGrob(mu_beta_summary, rows = NULL)
+
+# Save as PNG
+png("./figures/estimate_table_exponential_covariates.png", width = 1200, height = 200, res = 150)
+grid.draw(table_grob)
+dev.off()
+
+
+
+
+
+png("./figures/estimate_barplot_exponential_covariates.png", width = 1200, height = 200, res = 150)
 stan_plot(fit_exponential_covariates, pars = c("mu", "beta"))
+dev.off()
+
+
 stan_trace(fit_exponential_covariates, pars = c("mu", "beta"))
 
 posterior_samples <- extract(fit_exponential_covariates)
@@ -24,6 +51,40 @@ grid()
 
 
 
+# Posterior Distribution of Event Time
+n_individual <- 1000
+n_simulation <- 50
+
+png("./figures/posterior_event_time_exponential_covariates.png", width = 1800, height = 1200, res = 150)
+
+plot(NULL, xlim = c(0, 1000), ylim = c(0, 0.011), main = "Posterior Distribution of Event Time by Exponential Model", xlab = "Event Time", ylab = "Density")
+
+for (i in 1:n_simulation) {
+  
+  rate_nonsenior <- exp(mu_posterior[i] + beta_posterior[i] * 0) # assuming median age
+
+  rate_senior <- exp(mu_posterior[i] + beta_posterior[i] * 1) # assuming median age
+
+  simulated_times_nonsenior <- rexp(n_individual, rate = rate_nonsenior)
+  lines(density(simulated_times_nonsenior), lty=2, col = adjustcolor("lightblue", alpha = 0.8), lwd = 1)
+
+  simulated_times_senior <- rexp(n_individual, rate = rate_senior)
+  lines(density(simulated_times_senior), lty=2, col = adjustcolor("#faa3b2", alpha = 0.8), lwd = 1)
+
+}
+
+legend("topright", inset = 0.02, legend = c("Non-Senior (Age < 65)", "Senior (Age ≥ 65)"), col = c(adjustcolor("lightblue", alpha = 1), adjustcolor("#faa3b2", alpha = 1)), lty=c(2, 2), lwd = 2, cex = 1)
+
+grid()
+
+dev.off()
+
+
+
+
+
+
+
 
 
 
@@ -31,7 +92,7 @@ grid()
 n_individual <- 1000
 n_simulation <- 50
 
-# By Treatment: Chemotherapy vs Standard Treatment ----
+# Survival Curve by Treatment: Chemotherapy vs Standard Treatment ----
 
 png("./figures/posterior_survival_exponential_by_treatment.png", width = 1800, height = 1200, res = 150)
 
@@ -67,26 +128,26 @@ dev.off()
 
 
 
-# By Age Group: Seniors (age >= 65) vs Non-Seniors (age < 65) ----
+# Survival Curve by Age Group: Seniors (age >= 65) vs Non-Seniors (age < 65) ----
 png("./figures/posterior_survival_exponential_by_seniority.png", width = 1800, height = 1200, res = 150)
 
 plot(NULL, xlim = c(0, 1000), ylim = c(0, 1), main = "Posterior Predictive Survival Curve by Exponential Model", xlab = "Time", ylab = "Survival")
 
 for (i in 1:n_simulation) {
 
-  rate_standard <- exp(mu_posterior[i] + beta_posterior[i] * 0) # assuming median age
+  rate_nonsenior <- exp(mu_posterior[i] + beta_posterior[i] * 0) # assuming median age
 
-  rate_chemo <- exp(mu_posterior[i] + beta_posterior[i] * 1) # assuming median age
+  rate_senior <- exp(mu_posterior[i] + beta_posterior[i] * 1) # assuming median age
 
-  simulated_times_standard <- rexp(n_individual, rate = rate_standard)
-  lines(survfit(Surv(simulated_times_standard) ~ 1), lty=2, col = adjustcolor("lightblue", alpha = 0.8), lwd = 1)
+  simulated_times_nonsenior <- rexp(n_individual, rate = rate_nonsenior)
+  lines(survfit(Surv(simulated_times_nonsenior) ~ 1), lty=2, col = adjustcolor("lightblue", alpha = 0.8), lwd = 1)
 
-  simulated_times_chemo <- rexp(n_individual, rate = rate_chemo)
-  lines(survfit(Surv(simulated_times_chemo) ~ 1), lty=2, col = adjustcolor("#faa3b2", alpha = 0.8), lwd = 1)
+  simulated_times_senior <- rexp(n_individual, rate = rate_senior)
+  lines(survfit(Surv(simulated_times_senior) ~ 1), lty=2, col = adjustcolor("#faa3b2", alpha = 0.8), lwd = 1)
 
 }
 
-KM_curve_veteran <- survfit(Surv(time = d$time, event = d$status, type = "right") ~ aged65, data = d)
+KM_curve_veteran <- survfit(Surv(time = d$time, event = d$status, type = "right") ~ senior, data = d)
 list(KM_curve_veteran)
 
 lines(KM_curve_veteran[1]$time, KM_curve_veteran[1]$surv, col = "#47b2d5", lwd = 2)

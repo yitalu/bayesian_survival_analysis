@@ -77,7 +77,7 @@ Using this sample of the $\lambda$ parameter, we can also plot the posterior dis
 
 
 ### Exponential Model with Covariates
-From the [Kaplan-Meier Survival Curves](#kaplan-meier-survival-curves) section, we can tell that senior and non-senior patients have distinct survival probabilities. Here we estimate respective survival curve for each of the age group by linking the covariate *senior* (see the beginning part of the R code [02_plot_km_curve.R](02_plot_km_curve.R)) to the rate parameter:
+From the [Kaplan-Meier Survival Curves](#kaplan-meier-survival-curves) section, we can tell that senior and non-senior patients have distinct survival probabilities. Here we estimate the respective survival curve for each of the age group by linking the covariate *senior* (see the beginning part of the R code [02_plot_km_curve.R](02_plot_km_curve.R)) to the rate parameter:
 
 $$ \lambda = exp( \mu  + X \cdot \beta ),$$
 
@@ -98,8 +98,19 @@ $$F_{T} = (\space t_{cen} \space | \space exp( \mu  + X_{cen} \cdot \beta ) \spa
 
 
 ### The Estimates of Age Effect
-The estimate
+The estimates of the parameter $\mu$ and $\beta$ are shown in the below table and bar plot.
 
 <p align="center">
-    <img src="./figures/posterior_survival_exponential_by_seniority.png" alt="Estimate Table Exponential" width="50%">
+    <img src="./figures/estimate_table_exponential_covariates.png" alt="Estimate Table Exponential" width="45%">
+</p>
+
+<p align="center">
+    <img src="./figures/estimate_barplot_exponential_covariates.png" alt="Estimate Table Exponential" width="45%">
+</p>
+
+From these estimates, we can obtain the posterior distributions of event time and posterior survival curves for both the non-senior and senior age group accordingly:
+
+<p align="center">
+    <img src="./figures/posterior_event_time_exponential_covariates.png" alt="Estimate Table Exponential" width="49%">
+    <img src="./figures/posterior_survival_exponential_by_seniority.png" alt="Estimate Table Exponential" width="49%">
 </p>
