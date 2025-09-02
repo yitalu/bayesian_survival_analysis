@@ -28,7 +28,7 @@ Kaplan-Meier survival curves visualize survival probabilities over time. The cur
 
 
 ### The Model
-Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $ S(t) = e^{-\lambda t} $ and $ h(t) = \lambda $, where $\lambda$ is the rate parameter.
+Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $S(t) = exp(-\lambda t)$ and $h(t) = \lambda$, where $\lambda$ is the rate parameter.
 
 In [04_fit_exponential.stan](code/04_fit_exponential.stan), the observed survival times are modeled using an exponential distribution,
 
