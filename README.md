@@ -122,7 +122,7 @@ From these estimates, we can obtain the posterior distributions of event time an
 ## Weibull Model
 
 ### The Model
-Weibull Models are in fact a more general form of exponential. It has the flexibility to capture a varying rate in the hazard function, and in this case, fit the data better than the basic exponential model. I present the results here first, but more description will be added soon.
+Weibull Models are in fact a more general form of exponential models. It has the flexibility to capture a varying rate in the hazard function, and in this case, fit the data better than the basic exponential model. I present the results here first, but more description will be added soon.
 
 [CONTENT TO BE ADDED SOON.]
 
