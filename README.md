@@ -121,13 +121,13 @@ From these estimates, we can obtain the posterior distributions of event time an
 
 ## Weibull Model
 
-## The Model
+### The Model
 Weibull Models are in fact a more general form of exponential. It has the flexibility to capture a varying rate in the hazard function, and in this case, fit the data better than the basic exponential model. I present the results here first, but more description will be added soon.
 
 [CONTENT TO BE ADDED SOON.]
 
 
-## The Estimates
+### The Estimates
 <p align="center">
     <img src="./figures/posterior_event_time_weibull.png" alt="Estimate Table Exponential" width="49%">
     <img src="./figures/posterior_survival_weibull.png" alt="Posterior Survival Curve Exponential" width="49%">
@@ -138,7 +138,7 @@ Weibull Models are in fact a more general form of exponential. It has the flexib
 
 
 
-## The Estimates of Age Effect
+### The Estimates of Age Effect
 <p align="center">
     <!-- <img src="./figures/posterior_event_time_weibull_by_seniority.png" alt="Estimate Table Exponential" width="49%"> -->
     <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Exponential" width="49%">
