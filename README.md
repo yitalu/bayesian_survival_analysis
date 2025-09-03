@@ -163,7 +163,9 @@ Using priors $\alpha \sim LogNormal(0, 1)$ and $\sigma \sim LogNormal(0, 10)$, t
     <img src="./figures/estimate_barplot_weibull.png" alt="Estimate Table Weibull" width="45%">
 </p>
 
-The posterior distribution of event time and a posterior survival curve can then be graphed according to the above samples of $\alpha$ and $\sigma$
+<br>
+
+The posterior distribution of event time and the posterior survival curve can then be graphed according to the above samples of $\alpha$ and $\sigma$
 
 <p align="center">
     <img src="./figures/posterior_event_time_weibull.png" alt="Posterior Event Time Weibull" width="49%">
