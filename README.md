@@ -178,7 +178,7 @@ With the flexibility brought by the $\alpha$ parameter, the posterior survival c
 
 <br>
 
-## Weibull Model with Covariates
+### Weibull Model with Covariates
 As in the [Exponential Model with Covariates](#exponential-model-with-covariates) section, we can estimate a survival curve for each of the age group similarly. This can be done by linking the covariate to the $\sigma$ parameter in the Weibull distribution function:
 
 $$
@@ -205,9 +205,22 @@ where $F_{T}$ stands for the cumulative distribution function.
 <br>
 
 ### The Estimated Age Effect
+
+The estimates of the parameter $\alpha$, $\mu$, and $\beta$ are shown below
+
 <p align="center">
-    <!-- <img src="./figures/posterior_event_time_weibull_by_seniority.png" alt="Estimate Table Exponential" width="49%"> -->
-    <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Exponential" width="49%">
+    <img src="./figures/estimate_table_weibull_covariates.png" alt="Estimate Table Weibull" width="45%">
+</p>
+
+<p align="center">
+    <img src="./figures/estimate_barplot_weibull_covariates.png" alt="Estimate Table Weibull" width="45%">
+</p>
+
+, and the corresponding posterior event time distributions and survival curves for both group can be plotted:
+
+<p align="center">
+    <img src="./figures/posterior_event_time_weibull_by_seniority.png" alt="Posterior Event Time Weibull" width="49%">
+    <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Weibull" width="49%">
 </p>
 
 
