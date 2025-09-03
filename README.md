@@ -29,7 +29,7 @@ Kaplan-Meier survival curves visualize survival probabilities over time. The cur
 ### The Model
 Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $S(t) = exp(-\lambda t)$ and $h(t) = \lambda$, where $\lambda$ is the rate parameter.
 
-In [e01_fit_exponential.stan](code/e01_fit_exponential.stan), the observed survival times are modeled using an exponential distribution,
+In [e01_fit_exponential.stan](code/e01_fit_exponential.stan), the observed survival time is modeled using an exponential distribution,
 
 $$t_{obs} \sim Exponential(\lambda),$$
 
@@ -124,7 +124,29 @@ From these estimates, we can obtain the posterior distributions of event time an
 ### The Model
 The Weibull model is in fact a more general form of the exponential model. It has a hazard function $h(t) = \lambda \alpha t^{\alpha - 1}$ and a survival function $S(t) = exp(-\lambda t^{\alpha})$, in which the shape parameter $\alpha$ can take any positive value, capturing a varying hazard (increasing, decreasing, or being constant) over time. When $\alpha = 1$, the hazard and survival functions reduce to their exponential counterpart introduced in the [Exponential Model](#exponential-model) section.
 
-Due to this flexibility, in our `veteran` case, the Weibull model fits the data better than the basic exponential model as you will see. In 
+Due to this flexibility, in our `veteran` case, the Weibull model fits the data better than the basic exponential model as you will see. The survival time is modeled as
+
+$$t_{obs} \sim Weibull(\alpha, \sigma),$$
+
+in which the Weibull distribution takes the form
+
+$$ \frac{\alpha}{\sigma} (\frac{t}{\sigma})^{\alpha - 1} exp [-(\frac{t}{\sigma})^{\alpha}]. $$
+
+Note this looks somewhat different from the product of the hazard and survival functions laid out before, but it is just the same thing in disguise. We follow this later form because it is what is actually implemented in both R and Stan functions, making us easier to make sense of the choice of the parameters.
+
+Again, the likelihood part needs some cares as we have different cencoring times for different individuals. By the same notations, the likelihood function is
+
+$$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \space | \space \alpha, \sigma) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} | \alpha, \sigma) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} | \alpha, \sigma)) ,$$
+
+with the logarithm
+
+$$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \space | \space \alpha, \sigma) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} | \alpha, \sigma) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} | \alpha, \sigma) \space]. $$
+
+
+
+
+
+
 
 ### The Estimates
 <p align="center">
