@@ -98,7 +98,9 @@ and the cumulative distribution function in the likelihood
 
 $$F_{T} = (\space t_{cen} \space | \space exp( \mu  + X_{cen} \cdot \beta ) \space).$$
 
+This part of modeling is implemented in [e05_fit_exponential_covariates.stan](./code/e05_fit_exponential_covariates.stan).
 
+<br>
 
 ### The Estimates of Age Effect
 The estimates of the parameter $\mu$ and $\beta$ are shown in the below table and bar plot.
@@ -197,7 +199,7 @@ and
 
 $$F_{T} = (\space t_{cen} \space | \alpha, \space exp( \mu  + X_{cen} \cdot \beta ) \space),$$
 
-where $F_{T}$ stands for the cumulative distribution function.
+where $F_{T}$ stands for the cumulative distribution function. See script [w05_fit_weibull_covariates.stan](./code/w05_fit_weibull_covariates.stan) for the implementation.
 
 
 
