@@ -1,7 +1,34 @@
 summary(fit_weibull)
 print(fit_weibull, pars = c("alpha", "sigma"))
 
+
+
+
+library(gridExtra)
+library(grid)
+library(ggplot2)
+
+# 
+alpha_sigma_summary <- as.data.frame(summary(fit_weibull)$summary[c("alpha", "sigma"), , drop = FALSE])
+alpha_sigma_summary$Parameter <- rownames(alpha_sigma_summary)
+alpha_sigma_summary <- alpha_sigma_summary[, c("Parameter", colnames(alpha_sigma_summary)[1:(ncol(alpha_sigma_summary)-1)])]
+alpha_sigma_summary[ , -1] <- round(alpha_sigma_summary[ , -1], 3)
+
+# Create table grob
+table_grob <- tableGrob(alpha_sigma_summary, rows = NULL)
+
+# Save as PNG
+png("./figures/estimate_table_weibull.png", width = 1300, height = 200, res = 150)
+grid.draw(table_grob)
+dev.off()
+
+
+
+png("./figures/estimate_barplot_weibull.png", width = 1200, height = 200, res = 150)
 stan_plot(fit_weibull, pars = c("alpha", "sigma"))
+dev.off()
+
+
 stan_trace(fit_weibull, pars = c("alpha", "sigma"))
 
 posterior_samples <- extract(fit_weibull)

@@ -42,5 +42,5 @@ model {
 
     // Prior for the shape and scale parameters
     alpha ~ lognormal(0, 1);
-    sigma ~ lognormal(0, 1);
+    sigma ~ lognormal(0, 10);
 }

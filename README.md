@@ -55,6 +55,8 @@ which belongs to the model block in the Stan script.
 
 
 
+<br>
+
 ### The Estimates
 The model produces a posterior sample for the $\lambda$ parameter, with a mean $0.008$ and a $95\%$ credible interval between $0.007$ and $0.009$.
 
@@ -63,17 +65,19 @@ The model produces a posterior sample for the $\lambda$ parameter, with a mean $
 </p>
 
 <p align="center">
-    <img src="./figures/estimate_barplot_exponential.png" alt="Estimate Table Exponential" width="45%">
+    <img src="./figures/estimate_barplot_exponential.png" alt="Estimate Barplot Exponential" width="45%">
 </p>
 
 Using this sample of the $\lambda$ parameter, we can also plot the posterior distribution of event time and a posterior survival curve:
 
 <p align="center">
-    <img src="./figures/posterior_event_time_exponential.png" alt="Estimate Table Exponential" width="49%">
+    <img src="./figures/posterior_event_time_exponential.png" alt="Posterior Event Time Exponential" width="49%">
     <img src="./figures/posterior_survival_exponential.png" alt="Posterior Survival Curve Exponential" width="49%">
 </p>
 
 
+
+<br>
 
 ### Exponential Model with Covariates
 From the [Kaplan-Meier Survival Curves](#kaplan-meier-survival-curves) section, we can tell that senior and non-senior patients have distinct survival probabilities. Here we estimate the respective survival curve for each of the age group by linking the covariate *senior* (see the beginning part of the R code [02_plot_km_curve.R](02_plot_km_curve.R)) to the rate parameter:
@@ -146,16 +150,32 @@ This looks scary but it is rather straightforward when calling written functions
 
 
 
+<br>
+
 ### The Estimates
+Using priors $\alpha \sim LogNormal(0, 1)$ and $\sigma \sim LogNormal(0, 10)$, the Weibull model produces the estimates
+
 <p align="center">
-    <img src="./figures/posterior_event_time_weibull.png" alt="Estimate Table Exponential" width="49%">
-    <img src="./figures/posterior_survival_weibull.png" alt="Posterior Survival Curve Exponential" width="49%">
+    <img src="./figures/estimate_table_weibull.png" alt="Estimate Table Weibull" width="45%">
+</p>
+
+<p align="center">
+    <img src="./figures/estimate_barplot_weibull.png" alt="Estimate Table Weibull" width="45%">
+</p>
+
+The posterior distribution of event time and a posterior survival curve can then be graphed according to the above samples of $\alpha$ and $\sigma$
+
+<p align="center">
+    <img src="./figures/posterior_event_time_weibull.png" alt="Posterior Event Time Weibull" width="49%">
+    <img src="./figures/posterior_survival_weibull.png" alt="Posterior Survival Curve Weibull" width="49%">
 </p>
 
 
 <!-- ## Weibull Model with Covariates -->
 
 
+
+<br>
 
 ### The Estimated Age Effect
 <p align="center">
