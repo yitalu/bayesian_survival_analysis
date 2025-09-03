@@ -86,8 +86,8 @@ $$ \lambda = exp( \mu  + X \cdot \beta ),$$
 
 where $\mu$ and $\beta$ have priors
 
-$$\mu \sim Normal(0, \space 2)$$
-$$\beta \sim Normal(0, \space 2)$$
+$$\mu \sim Normal(0, \space 2),$$
+$$\beta \sim Normal(0, \space 2).$$
 
 <br>
 This applies to both the observed and cencored covariate. Thus,
@@ -172,9 +172,34 @@ The posterior distribution of event time and the posterior survival curve can th
     <img src="./figures/posterior_survival_weibull.png" alt="Posterior Survival Curve Weibull" width="49%">
 </p>
 
-Note that with the flexibility brought by the $\alpha$ parameter, the model fits the observed survival curve better than the [exponential model](#the-estimates).
+With the flexibility brought by the $\alpha$ parameter, the posterior survival curve by Weibull model fits the observed survival curve better than by the [exponential model](#the-estimates).
 
-<!-- ## Weibull Model with Covariates -->
+
+
+<br>
+
+## Weibull Model with Covariates
+As in the [Exponential Model with Covariates](#exponential-model-with-covariates) section, we can estimate a survival curve for each of the age group similarly. This can be done by linking the covariate to the $\sigma$ parameter in the Weibull distribution function:
+
+$$
+\sigma = exp( \mu  + X \cdot \beta ),$$
+
+where $\mu$ and $\beta$ have priors
+
+$$\mu \sim Normal(-4, \space 2),$$
+$$\beta \sim Normal(0, \space 2).$$
+
+And again, this applies to both the observed and cencored covariate, hence
+
+$$t_{obs} \sim Weibull(\alpha, \space exp( \mu  + X_{obs} \cdot \beta ) \space)$$
+
+and
+
+$$F_{T} = (\space t_{cen} \space | \alpha, \space exp( \mu  + X_{cen} \cdot \beta ) \space),$$
+
+where $F_{T}$ stands for the cumulative distribution function.
+
+
 
 
 
