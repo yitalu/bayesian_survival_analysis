@@ -1,11 +1,6 @@
 library(rstan)
 
-d <- veteran # randomised trial of two treatment regimens for lung cancer
-# View(d)
-colnames(d)
-
-
-# covariates <- c("treat_chemo", "age")
+# covariates <- c("treat_chemo", "senior")
 covariates <- c("treat_chemo")
 covariates <- c("senior")
 

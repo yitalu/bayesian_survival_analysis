@@ -189,7 +189,7 @@ where $\mu$ and $\beta$ have priors
 $$\mu \sim Normal(-4, \space 2),$$
 $$\beta \sim Normal(0, \space 2).$$
 
-And again, this applies to both the observed and cencored covariate, hence
+Again, this applies to both the observed and cencored covariate, hence
 
 $$t_{obs} \sim Weibull(\alpha, \space exp( \mu  + X_{obs} \cdot \beta ) \space)$$
 
@@ -198,7 +198,6 @@ and
 $$F_{T} = (\space t_{cen} \space | \alpha, \space exp( \mu  + X_{cen} \cdot \beta ) \space),$$
 
 where $F_{T}$ stands for the cumulative distribution function.
-
 
 
 
