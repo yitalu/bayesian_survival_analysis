@@ -138,7 +138,7 @@ Weibull Models are in fact a more general form of exponential models. It has the
 
 
 
-### The Estimates of Age Effect
+### The Estimated Age Effect
 <p align="center">
     <!-- <img src="./figures/posterior_event_time_weibull_by_seniority.png" alt="Estimate Table Exponential" width="49%"> -->
     <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Exponential" width="49%">
