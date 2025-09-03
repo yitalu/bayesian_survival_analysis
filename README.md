@@ -179,10 +179,10 @@ With the flexibility brought by the $\alpha$ parameter, the posterior survival c
 <br>
 
 ### Weibull Model with Covariates
-As in the [Exponential Model with Covariates](#exponential-model-with-covariates) section, we can estimate a survival curve for each of the age group similarly. This can be done by linking the covariate to the scale parameter $\sigma$ in the Weibull distribution function:
+As in the [Exponential Model with Covariates](#exponential-model-with-covariates) section, we can estimate a survival curve for each of the age group similarly. This can be done by linking the covariate to the scale parameter $\sigma$ (and actually the shape parameter $\alpha$ as well) in the Weibull distribution function:
 
 $$
-\sigma = exp( \mu  + X \cdot \beta ),$$
+\sigma = exp( - \frac{\mu  + X \cdot \beta}{\alpha} ),$$
 
 where $\mu$ and $\beta$ have priors
 
