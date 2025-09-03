@@ -46,7 +46,7 @@ n_simulation <- 50
 
 png("./figures/posterior_event_time_exponential.png", width = 1800, height = 1200, res = 150)
 
-plot(NULL, xlim = c(0, 1000), ylim = c(0, 0.008), main = "Posterior Distribution of Event Time by Exponential Model", xlab = "Event Time", ylab = "Density")
+plot(NULL, xlim = c(0, 1000), ylim = c(0, 0.010), main = "Posterior Distribution of Event Time by Exponential Model", xlab = "Event Time", ylab = "Density")
 
 for (i in 1:n_simulation) {
   lines(density(rexp(1000, rate = lambda_posterior[i])), main = "Posterior Distribution of Event Time", xlab = "Event Time", col = adjustcolor("#faa3b2", alpha = 0.8), lwd = 1)
