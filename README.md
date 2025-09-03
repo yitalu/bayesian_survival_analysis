@@ -227,6 +227,8 @@ The estimates of the parameter $\alpha$, $\mu$, and $\beta$ are shown below
     <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Weibull" width="49%">
 </p>
 
+Looking at the survival curves for both the senior and non-senior group, the Weibull model again does a better job than the exponential model in capturing the survival across the whole time span.
+
 
 
 
