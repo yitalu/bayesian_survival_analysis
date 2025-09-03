@@ -216,6 +216,8 @@ The estimates of the parameter $\alpha$, $\mu$, and $\beta$ are shown below
     <img src="./figures/estimate_barplot_weibull_covariates.png" alt="Estimate Table Weibull" width="45%">
 </p>
 
+<br>
+
 , and the corresponding posterior event time distributions and survival curves for both group can be plotted:
 
 <p align="center">
@@ -226,18 +228,7 @@ The estimates of the parameter $\alpha$, $\mu$, and $\beta$ are shown below
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <br>
 
-<!-- ## Cox Proportional Hazard Model
-[CONTENT TO BE ADDED SOON.] -->
+## Cox Proportional Hazard Model
+[CONTENT TO BE ADDED SOON.]
