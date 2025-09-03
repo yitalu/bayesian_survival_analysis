@@ -29,7 +29,7 @@ Kaplan-Meier survival curves visualize survival probabilities over time. The cur
 ### The Model
 Exponential survival models are the most basic parametric survival models that assume a constant hazard rate over time. The survival function and the hazard function are defined, respectively, as $S(t) = exp(-\lambda t)$ and $h(t) = \lambda$, where $\lambda$ is the rate parameter.
 
-In [04_fit_exponential.stan](code/04_fit_exponential.stan), the observed survival times are modeled using an exponential distribution,
+In [e01_fit_exponential.stan](code/e01_fit_exponential.stan), the observed survival times are modeled using an exponential distribution,
 
 $$t_{obs} \sim Exponential(\lambda),$$
 
@@ -39,7 +39,7 @@ $$ \lambda \sim LogNormal(0, 1). $$
 
 <br>
 
-The Stan user guide provides tips on how to code the likelihood function for an exponential model. However, it uses a common censoring time for all cencored individuals, which is usually not the case. A modified version is followed and can be found in my Stan code [04_fit_exponential.stan](code/04_fit_exponential.stan).
+The Stan user guide provides tips on how to code the likelihood function for an exponential model. However, it uses a common censoring time for all cencored individuals, which is usually not the case. A modified version is followed and can be found in my Stan code [e01_fit_exponential.stan](code/e01_fit_exponential.stan).
 
 Instead of a single cencoring time, $t_{cen}$, we need different cencoring times for different individuals, denoted as $t_{cen, \space j}$, $j = 1, 2, ..., N_{cen}$. For the observed event times, we keep the same notation, $t_{obs, \space i}$, $i = 1, 2, ..., N_{obs}$. The likelihood is then specified as 
 
@@ -122,10 +122,9 @@ From these estimates, we can obtain the posterior distributions of event time an
 ## Weibull Model
 
 ### The Model
-Weibull Models are in fact a more general form of exponential models. It has the flexibility to capture a varying rate in the hazard function, and in this case, fit the data better than the basic exponential model. I present the results here first, but more description will be added soon.
+The Weibull model is in fact a more general form of the exponential model. It has a hazard function $h(t) = \lambda \alpha t^{\alpha - 1}$ and a survival function $S(t) = exp(-\lambda t^{\alpha})$, in which the shape parameter $\alpha$ can take any positive value, capturing a varying hazard (increasing, decreasing, or being constant) over time. When $\alpha = 1$, the hazard and survival functions reduce to their exponential counterpart introduced in the [Exponential Model](#exponential-model) section.
 
-[CONTENT TO BE ADDED SOON.]
-
+Due to this flexibility, in our `veteran` case, the Weibull model fits the data better than the basic exponential model as you will see. In 
 
 ### The Estimates
 <p align="center">
@@ -143,3 +142,22 @@ Weibull Models are in fact a more general form of exponential models. It has the
     <!-- <img src="./figures/posterior_event_time_weibull_by_seniority.png" alt="Estimate Table Exponential" width="49%"> -->
     <img src="./figures/posterior_survival_weibull_by_seniority.png" alt="Posterior Survival Curve Exponential" width="49%">
 </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<!-- ## Cox Proportional Hazard Model
+[CONTENT TO BE ADDED SOON.] -->
