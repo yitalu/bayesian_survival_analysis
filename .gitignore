@@ -50,3 +50,6 @@ rsconnect/
 
 # archived code
 code/archive/
+
+# macOS system files
+.DS_Store
