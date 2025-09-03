@@ -134,7 +134,7 @@ $$ \frac{\alpha}{\sigma} (\frac{t}{\sigma})^{\alpha - 1} exp [-(\frac{t}{\sigma}
 
 Note this looks somewhat different from the product of the hazard and survival functions laid out before, but it is just the same thing in disguise. We follow this later form because it is what is actually implemented in both R and Stan functions, making us easier to make sense of the choice of the parameters.
 
-Again, the likelihood part needs some cares as we have different cencoring times for different individuals. By the same notations, the likelihood function is
+Again, the likelihood part needs some cares as we have different cencoring times for different individuals. By the same notations in [Exponential Model](#the-model), the likelihood function is
 
 $$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \space | \space \alpha, \sigma) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} | \alpha, \sigma) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} | \alpha, \sigma)) ,$$
 
@@ -142,9 +142,7 @@ with the logarithm
 
 $$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \space | \space \alpha, \sigma) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} | \alpha, \sigma) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} | \alpha, \sigma) \space]. $$
 
-
-
-
+This looks scary but it is rather straightforward when calling written functions in R and Stan, as in [w02_fit_weibull.stan](code/w02_fit_weibull.stan) and [w03_analyze_weibull.R](code/w03_analyze_weibull.R).
 
 
 
