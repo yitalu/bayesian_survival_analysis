@@ -172,6 +172,7 @@ The posterior distribution of event time and the posterior survival curve can th
     <img src="./figures/posterior_survival_weibull.png" alt="Posterior Survival Curve Weibull" width="49%">
 </p>
 
+Note that with the flexibility brought by the $\alpha$ parameter, the model fits the observed survival curve better than the [exponential model](#the-estimates).
 
 <!-- ## Weibull Model with Covariates -->
 

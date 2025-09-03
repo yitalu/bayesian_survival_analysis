@@ -44,9 +44,7 @@ n_individual <- 1000
 n_simulation <- 50
 
 
-# png("./figures/post_dist_event_time_weibull.png", width = 1800, height = 1200, res = 150)
-
-n_simulation <- 50
+# png("./figures/posterior_event_time_weibull.png", width = 1800, height = 1200, res = 150)
 
 plot(NULL, xlim = c(0, 1000), ylim = c(0, 0.01), main = "Posterior Distribution of Event Time by Weibull Model", xlab = "Event Time", ylab = "Density")
 
@@ -54,7 +52,7 @@ for (i in 1:n_simulation) {
   lines(density( rweibull(n_individual, shape = alpha_posterior[i], scale = sigma_posterior[i]) ), col = adjustcolor("#f45e77", alpha = 0.3), lwd = 1)
 }
 
-lines(density( rweibull(n_individual, shape = mean(alpha_posterior), scale = mean(sigma_posterior)) ), main = "Posterior Distribution of Event Time by Weibull Model", xlab = "Event Time", col = "#f70830", lwd = 3)
+# lines(density( rweibull(n_individual, shape = mean(alpha_posterior), scale = mean(sigma_posterior)) ), main = "Posterior Distribution of Event Time by Weibull Model", xlab = "Event Time", col = "#f70830", lwd = 3)
 
 grid()
 # dev.off()
