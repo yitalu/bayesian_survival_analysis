@@ -1,7 +1,7 @@
 # Bayesian Survival Analysis with Stan
 
 ## Overview
-This repository introduces Bayesian Survival Analysis using R and Stan. While frequentist survival analysis is well-documented, Bayesian methods, especially those implemented with Stan, are less commonly covered. This project addresses that gap by demonstrating exploratory analysis with standard packages and datasets, including Kaplan-Meier curves, followed by Bayesian implementations of parametric survival models such as Weibull and Exponential, as well as semi-parametric Cox proportional hazards models using Stan.
+This repository introduces Bayesian Survival Analysis using R and Stan. While frequentist survival analysis is well-documented, Bayesian methods, especially those implemented with Stan, are less commonly covered. This project addresses that gap by demonstrating exploratory analysis with standard packages and datasets, including [Kaplan-Meier curves](#kaplan-meier-survival-curves), followed by Bayesian implementations of parametric survival models such as [Exponential](#exponential-model) and [Weibull](#weibull-model), as well as semi-parametric [Cox proportional hazards models](#cox-proportional-hazard-model) using Stan.
 
 The project utilizes a very common dataset `veteran` from the `survival` package in R, which contains data on lung cancer patients. The dataset includes variables such as treatment type (chemotheory vs standard), age, cell type, and survival time, etc. For more details, refer to the documentation of the `survival` package.
 
