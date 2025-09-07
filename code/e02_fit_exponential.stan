@@ -20,8 +20,8 @@ model {
     t_observed ~ exponential(lambda);
 
     // Contribution of censored data to the likelihood
-    for (i in 1:n_censored) {
-        target += exponential_lccdf(t_censored[i] | lambda);
+    for (j in 1:n_censored) {
+        target += exponential_lccdf(t_censored[j] | lambda);
     }
 
     // for (i in 1:n_all) {

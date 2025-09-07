@@ -3,25 +3,48 @@ source("./code/01_load_data.R")
 
 head(d)
 
-d$treat_chemo <- ifelse(d$trt == 2, 1, 0) # 1: chemotherapy, 0: standard treatment
-d$senior <- ifelse(d$age >= 65, 1, 0) # 1: senior (age >= 65), 0: non-senior (age < 65)
 
-Surv(time = d$time, event = d$status, type = "right")
+# Function for building stepwise (stair) coordinates for the CI band so the fill follows the KM steps
+step_coords <- function(t, v, start = 1) {
+  x <- c(0, as.vector(rbind(t, t)))
+  y <- c(start, as.vector(rbind(c(start, v[-length(v)]), v)))
+  list(x = x, y = y)
+}
 
 
 
 
 # Plot Kaplan-Meier curve with all data
 km_curve_all <- survfit(Surv(time = d$time, event = d$status, type = "right") ~ 1, data = d)
-summary(km_curve_all)
-list(km_curve_all)
+# summary(km_curve_all)
+# list(km_curve_all)
+id_keep <- !(is.na( km_curve_all$time ) | is.na( km_curve_all$lower ) | is.na( km_curve_all$upper ))
+times <- km_curve_all$time[id_keep]
+lower <- km_curve_all$lower[id_keep]
+upper <- km_curve_all$upper[id_keep]
+
+lower_step <- step_coords(times, lower, start = 1)
+upper_step <- step_coords(times, upper, start = 1)
+
 
 png("./figures/km_curve_all.png", width = 1800, height = 1200, res = 150)
 
-plot(km_curve_all, xlab = "Time", ylab = "Survival Probability", main = "Kaplan-Meier Curve for the Veteran Dataset", col = "#1e90ff", lwd = 2)
-grid()
+plot(km_curve_all, xlab = "Time", ylab = "Survival Probability", main = "Kaplan-Meier Curve for the Veteran Dataset", col = "#1e90ff", lwd = 2, conf.int = FALSE)
+
+# Shade area between confidence intervals
+polygon(
+  x = c(lower_step$x, rev(upper_step$x)),
+  y = c(lower_step$y, rev(upper_step$y)),
+  col = adjustcolor("#1e90ff", alpha.f = 0.2),
+  border = NA
+)
+
+lines(km_curve_all, col = "#1e90ff", lwd = 2)
 
 dev.off()
+
+
+
 
 
 
@@ -30,6 +53,12 @@ dev.off()
 km_plot_treatment <- survfit(Surv(time = d$time, event = d$status, type = "right") ~ treat_chemo, data = d)
 summary(km_plot_treatment)
 list(km_plot_treatment)
+
+id_keep <- !(is.na( km_curve_all$time ) | is.na( km_curve_all$lower ) | is.na( km_curve_all$upper ))
+times <- km_curve_all$time[id_keep]
+lower <- km_curve_all$lower[id_keep]
+upper <- km_curve_all$upper[id_keep]
+
 
 png("./figures/km_curve_treatment.png", width = 1800, height = 1200, res = 150)
 

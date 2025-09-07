@@ -29,8 +29,8 @@ model {
     t_observed ~ exponential( exp(mu + x_observed * beta) );
 
     // Contribution of censored data to the likelihood
-    for (i in 1:n_censored) {
-        target += exponential_lccdf(t_censored[i] | exp(mu + x_censored[i] * beta));
+    for (j in 1:n_censored) {
+        target += exponential_lccdf(t_censored[j] | exp(mu + x_censored[j] * beta));
     }
 
     // for (i in 1:n_all) {

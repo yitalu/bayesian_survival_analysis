@@ -36,8 +36,8 @@ model {
     t_observed ~ weibull(alpha, sigma);
 
     // Contribution of censored data to the likelihood
-    for (i in 1:n_censored) {
-        target += weibull_lccdf(t_censored[i] | alpha, exp( -(mu + x_censored[i] * beta)/alpha ));
+    for (j in 1:n_censored) {
+        target += weibull_lccdf(t_censored[j] | alpha, exp( -(mu + x_censored[j] * beta)/alpha ));
     }
 
     // for (i in 1:n_all) {
