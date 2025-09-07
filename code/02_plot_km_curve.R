@@ -40,6 +40,7 @@ polygon(
 )
 
 lines(km_curve_all, col = "#1e90ff", lwd = 2)
+grid()
 
 dev.off()
 
