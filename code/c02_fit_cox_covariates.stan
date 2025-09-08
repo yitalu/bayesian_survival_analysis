@@ -11,6 +11,7 @@ data {
     array[n_all] int censored; // 1: censored; 0: event observed
 
     int<lower=0> n_covariates; // number of covariates
+    // matrix[n_all, n_covariates] x_all; // covariate matrix for both observed and censored events
     // matrix[n_observed, n_covariates] x_observed; // covariate matrix for the observed
     // matrix[n_censored, n_covariates] x_censored; // covariate matrix for the censored
     vector[n_all] x_all; // covariate matrix for both observed and censored events
@@ -25,22 +26,15 @@ parameters {
 
 model {
     vector[n_all] xbeta_all = x_all * beta;
-    // vector[n_observed] xbeta_observed = x_observed * beta;
-    // vector[n_censored] xbeta_cencored = x_censored * beta;
     real log_denominator = 0;
 
     for (k in 1:n_all) {
-        log_denominator = log_sum_exp(log_denominator, x_all[k]);
-
-        // if (censored[k] == 1) {
-        //     log_denominator = log_sum_exp(log_denominator, xbeta_cencored[k]);
-        // }
+        log_denominator = log_sum_exp(log_denominator, xbeta_all[k]);
 
         if (observed[k] == 1) {
-            // log_denominator = log_sum_exp(log_denominator, xbeta_observed[k]);
             target += xbeta_all[k] - log_denominator;
         }   
     }
 
-    beta ~ normal(100, 2);
+    beta ~ normal(0, 2);
 }

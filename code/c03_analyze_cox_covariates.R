@@ -34,5 +34,18 @@ hazard_ratio_posterior <- exp(beta_posterior)
 summary(beta_posterior)
 summary(hazard_ratio_posterior)
 
-plot(density(hazard_ratio_posterior), xlim = c(0, 1e75))
+plot(density(hazard_ratio_posterior))
 
+
+# Estimating the baseline survival function
+KM_curve_veteran <- survfit(Surv(time = d$time, event = d$status, type = "right") ~ senior, data = d)
+
+cox_curve_veteran <- coxph(Surv(time = d$time, event = d$status, type = "right") ~ senior, data = d)
+
+list(KM_curve_veteran)
+summary(KM_curve_veteran[1])
+
+list(cox_curve_veteran)
+
+plot(KM_curve_veteran[1])
+lines(cox_curve_veteran)

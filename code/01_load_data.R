@@ -11,8 +11,6 @@ d <- veteran # randomised trial of two treatment regimens for lung cancer
 d$treat_chemo <- ifelse(d$trt == 2, 1, 0) # 1: chemotherapy, 0: standard treatment
 d$senior <- ifelse(d$age >= 65, 1, 0) # 1: senior (age >= 65), 0: non-senior (age < 65)
 
-# d$cell_squamous
-
 
 
 
