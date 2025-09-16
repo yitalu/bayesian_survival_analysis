@@ -35,11 +35,11 @@ model {
     vector[n_all] xbeta_all = x_all * beta;
     real log_denominator = 0;
 
-    for (k in 1:n_all) {
-        log_denominator = log_sum_exp(log_denominator, xbeta_all[k]);
+    for (i in 1:n_all) {
+        log_denominator = log_sum_exp(log_denominator, xbeta_all[i]);
 
-        if (observed[k] == 1) {
-            target += xbeta_all[k] - log_denominator;
+        if (observed[i] == 1) {
+            target += xbeta_all[i] - log_denominator;
         }   
     }
 

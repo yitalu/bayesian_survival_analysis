@@ -43,13 +43,13 @@ The Stan user guide provides tips on how to code the likelihood function for an 
 
 Instead of a single cencoring time, $t_{cen}$, we need different cencoring times for different individuals, denoted as $t_{cen, \space j}$, $j = 1, 2, ..., N_{cen}$. For the observed event times, we keep the same notation, $t_{obs, \space i}$, $i = 1, 2, ..., N_{obs}$. The likelihood is then specified as 
 
-$$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \space | \space \lambda) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} | \lambda) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} | \lambda)) ,$$
+$$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \mid \lambda) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} \mid \lambda) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} \mid \lambda)) ,$$
 
-where $F_{T}(t_{cen} | \lambda)$ is the cumulative distribution function (CDF) of the exponential distribution evaluated at the censored times.
+where $F_{T}(t_{cen} \mid \lambda)$ is the cumulative distribution function (CDF) of the exponential distribution evaluated at the censored times.
 
 Taking logarithm of the likelihood, we have:
 
-$$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \space | \space \lambda) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} | \lambda) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} | \lambda) \space]. $$
+$$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \mid \lambda) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} \mid \lambda) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} \mid \lambda) \space]. $$
 
 which belongs to the model block in the Stan script.
 
@@ -96,7 +96,7 @@ $$t_{obs} \sim Exponential(\space exp( \mu  + X_{obs} \cdot \beta ) \space),$$
 
 and the cumulative distribution function in the likelihood
 
-$$F_{T} = (\space t_{cen} \space | \space exp( \mu  + X_{cen} \cdot \beta ) \space).$$
+$$F_{T} = (\space t_{cen} \mid exp( \mu  + X_{cen} \cdot \beta ) \space).$$
 
 This part of modeling is implemented in [e05_fit_exponential_covariates.stan](./code/e05_fit_exponential_covariates.stan).
 
@@ -142,11 +142,11 @@ Note this looks somewhat different from the product of the hazard and survival f
 
 Again, the likelihood part needs some cares as we have different cencoring times for different individuals. By the same notations in [Exponential Model](#the-model), the likelihood function is
 
-$$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \space | \space \alpha, \sigma) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} | \alpha, \sigma) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} | \alpha, \sigma)) ,$$
+$$ \space p(\space t_{obs}, t_{cen}, N_{obs}, N_{cen} \mid \alpha, \sigma) = \prod_{i=1}^{N_{obs}} exp(t_{obs, \space i} \mid \alpha, \sigma) \space \prod_{j=1}^{N_{cen}} (1 - F_{T}(t_{cen, \space j} \mid \alpha, \sigma)) ,$$
 
 with the logarithm
 
-$$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \space | \space \alpha, \sigma) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} | \alpha, \sigma) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} | \alpha, \sigma) \space]. $$
+$$ \space log \space p(\space t_{obs, \space i}, t_{cen, \space j}, N_{obs}, N_{cen} \mid \alpha, \sigma) = \sum_{i=1}^{N_{obs}} log \space [\space exp(t_{obs, \space i} \mid \alpha, \sigma) \space] + \sum_{j=1}^{N_{cen}} log \space [ \space 1 - F_{T}(t_{cen, \space j} \mid \alpha, \sigma) \space]. $$
 
 This looks scary but it is rather straightforward when calling written functions in R and Stan, as in [w02_fit_weibull.stan](code/w02_fit_weibull.stan) and [w03_analyze_weibull.R](code/w03_analyze_weibull.R).
 
@@ -197,7 +197,7 @@ $$t_{obs} \sim Weibull(\alpha, \space exp( \mu  + X_{obs} \cdot \beta ) \space)$
 
 and
 
-$$F_{T} = (\space t_{cen} \space | \alpha, \space exp( \mu  + X_{cen} \cdot \beta ) \space),$$
+$$F_{T} = (\space t_{cen} \mid \alpha, \space exp( \mu  + X_{cen} \cdot \beta ) \space),$$
 
 where $F_{T}$ stands for the cumulative distribution function. See script [w05_fit_weibull_covariates.stan](./code/w05_fit_weibull_covariates.stan) for the implementation.
 
@@ -237,9 +237,27 @@ Looking at the survival curves for both the senior and non-senior group, the Wei
 ## Cox Proportional Hazard Model
 
 ### The Model
-The Cox proportional hazards model is a widely used semi-parametric approach in survival analysis. Unlike parametric models such as the exponential and Weibull, its popularity stems from not requiring any specific assumption about the baseline hazard function, making it more flexible and broadly applicable in practice. The hazard function for an individual with covariates $X$ is modeled as $h(t | X) = h_{0}(t) \space exp(X \cdot \beta)$, where $h_{0}(t)$ is the baseline hazard function and $\beta$ is the vector of coefficients for the covariates. The hazard ratio between any two individuals is assumed to be constant over time, hence the term "proportional hazards".
+The Cox proportional hazards model is a widely used semi-parametric approach in survival analysis. Unlike parametric models such as the exponential and Weibull, its popularity stems from not requiring any specific assumption about the baseline hazard function, making it more flexible and broadly applicable in practice.
 
-For estimation, the partial likelihood function is used, which focuses on the order of event times rather than their exact values. This is particularly useful in the presence of censored data. The partial likelihood for $N$ individuals with observed event times $t_{1}, t_{2}, ..., t_{N}$ and covariates $X_{1}, X_{2}, ..., X_{N}$ is given by
+The hazard function for an individual with covariates $X$ is modeled as $h(t \mid X) = h_{0}(t) \space exp(X \cdot \beta)$, where $h_{0}(t)$ is the baseline hazard function and $\beta$ is the vector of coefficients for the covariates. The hazard ratio between any two individuals is assumed to be constant over time, hence the term "proportional hazards".
+
+For estimation, the Cox model uses the partial likelihood, which depends on the order of observed event times rather than their exact values. Censored times contribute to the risk set (the denominator of the partial likelihood) but not directly to the likelihood (the numerator). Suppose all event times (observed and censored) are sorted in ascending order, $t_{1} < t_{2} < \ldots < t_{N}$, where $N$ is the total number of individuals from either the observed set $S_{obs}$ or the censored set $S_{cen}$.
+
+The partial likelihood considers only the observed event times, and is formally expressed as
+
+$$
+p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \prod_{j \in S_{obs}} \frac{\exp(X_{j} \cdot \beta)}{\sum_{i = j}^N \exp(X_{i} \cdot \beta)},
+$$
+
+where $j \in S_{obs}$ indexes individuals who experienced the event (not censored) at time $t_{j}$, and $X_{j}$ is the covariate vector for individual $j$. The denominator is the sum of hazards for all individuals who are still in the risk set (observed or censored) at time $t_{j}$.
+
+Taking logarithm of the above gives 
+
+$$
+log \space p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \sum_{j \in S_{obs}} \left[ X_{j} \cdot \beta - log \left( \sum_{i = j}^N exp(X_{i} \cdot \beta) \right) \right].
+$$
+
+This is implemented in [c02_fit_cox_covariates.stan](code/c02_fit_cox_covariates.stan).
 
 
 
@@ -253,3 +271,5 @@ Using priors $\beta_{k} \sim Normal(0, 2)$, the Cox model produces the estimates
 <p align="center">
     <img src="./figures/estimate_barplot_cox_covariates.png" alt="Estimate Table Cox" width="45%">
 </p>
+
+[TO ADD HAZARD RATIO PLOTS]
