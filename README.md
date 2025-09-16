@@ -251,11 +251,21 @@ $$
 
 where $j \in S_{obs}$ indexes individuals who experienced the event (not censored) at time $t_{j}$, and $X_{j}$ is the covariate vector for individual $j$. The denominator is the sum of hazards for all individuals who are still in the risk set (observed or censored) at time $t_{j}$.
 
-Taking logarithm of the above gives 
+As a numerical example, consider 5 individuals with event times $t_{i} = [t_{1}, t_{2}^{+}, t_{3}, t_{4}, t_{5}^{+}]$, where individuals 1, 3, and 4 are observed (not censored), and individuals 2 and 5 are censored. The partial likelihood would be calculated as follows:
+
+$$
+p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \frac{\exp(X_{1} \cdot \beta)}{\sum_{i = 1}^5 \exp(X_{i} \cdot \beta)} \times \frac{\exp(X_{3} \cdot \beta)}{\sum_{i = 3}^5 \exp(X_{i} \cdot \beta)} \times \frac{\exp(X_{4} \cdot \beta)}{\sum_{i = 4}^5 \exp(X_{i} \cdot \beta)}.
+$$
+
+<br>
+
+For the sake of programming, we take the logarithm of the partial likelihood to simplify calculations. So the log-partial likelihood reads
 
 $$
 log \space p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \sum_{j \in S_{obs}} \left[ X_{j} \cdot \beta - log \left( \sum_{i = j}^N exp(X_{i} \cdot \beta) \right) \right].
 $$
+
+<br>
 
 We search for the $\beta$ coefficients that maximize this partial likelihood and obtain their estimates. This is implemented in [c02_fit_cox_covariates.stan](code/c02_fit_cox_covariates.stan).
 
