@@ -282,4 +282,4 @@ Using priors $\beta_{k} \sim Normal(0, 2)$, the Cox model produces the estimates
     <img src="./figures/estimate_barplot_cox_covariates.png" alt="Estimate Table Cox" width="45%">
 </p>
 
-[TO ADD HAZARD RATIO PLOTS]
+[TO ADD HAZARD RATIOS AND INTERPRETATIONS]
