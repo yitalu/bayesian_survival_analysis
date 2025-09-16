@@ -235,4 +235,21 @@ Looking at the survival curves for both the senior and non-senior group, the Wei
 <br>
 
 ## Cox Proportional Hazard Model
-[CONTENT TO BE ADDED SOON.]
+
+### The Model
+The Cox proportional hazards model is a widely used semi-parametric approach in survival analysis. Unlike parametric models such as the exponential and Weibull, its popularity stems from not requiring any specific assumption about the baseline hazard function, making it more flexible and broadly applicable in practice. The hazard function for an individual with covariates $X$ is modeled as $h(t | X) = h_{0}(t) \space exp(X \cdot \beta)$, where $h_{0}(t)$ is the baseline hazard function and $\beta$ is the vector of coefficients for the covariates. The hazard ratio between any two individuals is assumed to be constant over time, hence the term "proportional hazards".
+
+For estimation, the partial likelihood function is used, which focuses on the order of event times rather than their exact values. This is particularly useful in the presence of censored data. The partial likelihood for $N$ individuals with observed event times $t_{1}, t_{2}, ..., t_{N}$ and covariates $X_{1}, X_{2}, ..., X_{N}$ is given by
+
+
+
+<br>
+
+### The Estimates
+Using priors $\beta_{k} \sim Normal(0, 2)$, the Cox model produces the estimates as follows:
+<p align="center">
+    <img src="./figures/estimate_table_cox_covariates.png" alt="Estimate Table Cox" width="45%">
+</p>
+<p align="center">
+    <img src="./figures/estimate_barplot_cox_covariates.png" alt="Estimate Table Cox" width="45%">
+</p>

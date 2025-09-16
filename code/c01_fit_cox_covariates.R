@@ -12,8 +12,8 @@ d$disease_duration <- d$diagtime
 
 d <- d[order(-d$time), ] # reorder d in descending order by time (for use in Stan)
 
-covariates <- c("senior")
-# covariates <- c("treat_chemo", "cell_squamous", "cell_small", "cell_adeno", "cell_large", "performance_score", "disease_duration", "age", "prior_therapy")
+# covariates <- c("senior")
+covariates <- c("treat_chemo", "cell_squamous", "cell_small", "cell_adeno", "cell_large", "performance_score", "disease_duration", "age", "prior_therapy")
 
 data_list <- list(
     n_all = nrow(d),
