@@ -243,7 +243,7 @@ The hazard function for an individual with covariates $X$ is modeled as $h(t \mi
 
 For estimation, the Cox model uses the partial likelihood, which depends on the order of observed event times rather than their exact values. Censored times contribute to the risk set (the denominator of the partial likelihood) but not directly to the likelihood (the numerator). Suppose all event times (observed and censored) are sorted in ascending order, $t_{1} < t_{2} < \ldots < t_{N}$, where $N$ is the total number of individuals from either the observed set $S_{obs}$ or the censored set $S_{cen}$.
 
-The partial likelihood considers only the observed event times, and is formally expressed as
+The partial likelihood is formally expressed as
 
 $$
 p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \prod_{j \in S_{obs}} \frac{\exp(X_{j} \cdot \beta)}{\sum_{i = j}^N \exp(X_{i} \cdot \beta)},
@@ -257,7 +257,7 @@ $$
 log \space p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \sum_{j \in S_{obs}} \left[ X_{j} \cdot \beta - log \left( \sum_{i = j}^N exp(X_{i} \cdot \beta) \right) \right].
 $$
 
-This is implemented in [c02_fit_cox_covariates.stan](code/c02_fit_cox_covariates.stan).
+We search for the $\beta$ coefficients that maximize this partial likelihood and obtain their estimates. This is implemented in [c02_fit_cox_covariates.stan](code/c02_fit_cox_covariates.stan).
 
 
 
