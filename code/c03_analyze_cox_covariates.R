@@ -6,7 +6,7 @@ library(gridExtra)
 library(grid)
 library(ggplot2)
 
-# 
+# Coefficient summary table
 beta_summary <- as.data.frame(summary(fit_cox_covariates)$summary[paste0("beta[", 1:9, "]"), , drop = FALSE])
 # beta_summary$Parameter <- covariates # see ./code/c01_fit_cox_covariates.R
 beta_summary$Parameter <- c("Chemotherapy", "Squamous Cell", "Small Cell", "Adeno Cell", "Large Cell", "Performance Score", "Disease Duration", "Age", "Prior Therapy")
@@ -23,7 +23,7 @@ dev.off()
 
 
 
-
+# Bar plot of coefficients
 library(bayesplot)
 
 png("./figures/estimate_barplot_cox_covariates.png", width = 1200, height = 500, res = 150)
@@ -43,7 +43,8 @@ dev.off()
 
 
 
-
+# Hazard ratios
+# Exponentiate the coefficients to get hazard ratios
 
 hazard_ratios <- data.frame(
     Parameter = beta_summary$Parameter
@@ -58,13 +59,14 @@ hazard_ratios[ , -1] <- round(hazard_ratios[ , -1], 2)
 table_grob_hr <- tableGrob(hazard_ratios, rows = NULL)
 
 
-# Save as PNG
+# Save the table as PNG
 png("./figures/estimate_table_cox_hazard_ratios.png", width = 1200, height = 500, res = 150)
 grid.draw(table_grob_hr)
 dev.off()
 
 
 
+# Bar plot of hazard ratios
 png("./figures/estimate_barplot_cox_hazard_ratios.png", width = 1200, height = 500, res = 150)
 posterior_samples <- as.matrix(fit_cox_covariates, pars = paste0("beta[", 1:9, "]"))
 hazard_ratio_samples <- exp(posterior_samples)
