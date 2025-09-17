@@ -282,4 +282,15 @@ Using priors $\beta_{k} \sim Normal(0, 2)$, the Cox model produces the estimates
     <img src="./figures/estimate_barplot_cox_covariates.png" alt="Estimate Table Cox" width="45%">
 </p>
 
-[TO ADD HAZARD RATIOS AND INTERPRETATIONS]
+The close to zero standard errors of the means indicate the estimates are quite precise given the length and number of the Monte Carlo chains. Also, one can see the trace plots by `stan_trace` function in the R package `rstan` show good mixing and convergence of the chains (see [c03_analyze_cox_covariates.R](code/c03_analyze_cox_covariates.R)).
+
+Conventionally, we report the exponentiated coefficients, $exp(\beta)$, which represent the hazard ratios associated with a one-unit increase in the corresponding covariate. These hazard ratios provide insights into the relative risk of the event occurring, allowing for easier interpretation of the model results.
+
+<p align="center">
+    <img src="./figures/estimate_table_cox_hazard_ratios.png" alt="Estimate Table Cox Hazard Ratios" width="45%">
+</p>
+<p align="center">
+    <img src="./figures/estimate_barplot_cox_hazard_ratios.png" alt="Estimate Barplot Cox Hazard Ratios" width="45%">
+</p>
+
+A hazard ratio greater than 1 indicates an increased risk of the event occurring with an increase in the covariate, while a hazard ratio less than 1 indicates a decreased risk. So from the results, for instance, the hazard ratio for the `age` covariate is approximately 1.01, indicating that each additional year of age is associated with a 1% increase in the hazard of death.
