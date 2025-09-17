@@ -241,9 +241,7 @@ The Cox proportional hazards model is a widely used semi-parametric approach in 
 
 The hazard function for an individual with covariates $X$ is modeled as $h(t \mid X, \space \beta) = h_{0}(t) \space exp(X \cdot \beta)$, where $h_{0}(t)$ is the baseline hazard function and $\beta$ is the vector of coefficients for the covariates $X$. The hazard ratio between any two individuals is assumed to be constant over time, hence the term "proportional hazards".
 
-For estimation, the Cox model uses the partial likelihood, which depends on the order of observed event times rather than their exact values. Censored times contribute to the risk set (the denominator of the partial likelihood) but not directly to the likelihood (the numerator). Suppose all event times (observed and censored) are sorted in ascending order, $t_{1} < t_{2} < \ldots < t_{N}$, where $N$ is the total number of individuals from either the observed set $S_{obs}$ or the censored set $S_{cen}$.
-
-The partial likelihood is formally expressed as
+For estimation, the Cox model uses the partial likelihood, which depends on the order of observed event times rather than their exact values. Censored times contribute to the risk set (the denominator of the partial likelihood) but not directly to the likelihood (the numerator). Suppose all event times (observed and censored) are sorted in ascending order, $t_{1} < t_{2} < \ldots < t_{N}$, where $N$ is the total number of individuals from either the observed set $S_{obs}$ or the censored set $S_{cen}$. The partial likelihood can be formally expressed as
 
 $$
 p(\space \text{each} \space j \space \text{fails at} \space t_{j} \mid X, \space \beta) = \prod_{j \in S_{obs}} \frac{\exp(X_{j} \cdot \beta)}{\sum_{i = j}^N \exp(X_{i} \cdot \beta)},
