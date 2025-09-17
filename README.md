@@ -282,7 +282,7 @@ Using priors $\beta_{k} \sim Normal(0, 2)$, the Cox model produces the estimates
     <img src="./figures/estimate_barplot_cox_covariates.png" alt="Estimate Table Cox" width="45%">
 </p>
 
-The close to zero standard errors of the means indicate the estimates are quite precise given the length and number of the Monte Carlo chains. Also, one can see the trace plots by `stan_trace` function in the R package `rstan` show good mixing and convergence of the chains (see [c03_analyze_cox_covariates.R](code/c03_analyze_cox_covariates.R)).
+The close to zero standard errors of the means indicate the estimates are quite precise given the length and number of the Monte Carlo chains. Also, one can see the trace plots by the `stan_trace` function in the R package `rstan`, which show good mixing and convergence of the chains (see [c03_analyze_cox_covariates.R](code/c03_analyze_cox_covariates.R)).
 
 Conventionally, we report the exponentiated coefficients, $exp(\beta)$, which represent the hazard ratios associated with a one-unit increase in the corresponding covariate. These hazard ratios provide insights into the relative risk of the event occurring, allowing for easier interpretation of the model results.
 
