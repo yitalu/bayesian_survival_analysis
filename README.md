@@ -58,7 +58,7 @@ which belongs to the model block in the Stan script.
 <br>
 
 ### The Estimates
-The model produces a posterior sample for the $\lambda$ parameter, with a mean $0.008$ and a $95$ \% credible interval between $0.007$ and $0.009$.
+The model produces a posterior sample for the $\lambda$ parameter, with a mean $0.008$ and a $95$\% credible interval between $0.007$ and $0.009$.
 
 <p align="center">
     <img src="./figures/estimate_table_exponential.png" alt="Estimate Table Exponential" width="45%">
