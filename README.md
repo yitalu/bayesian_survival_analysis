@@ -80,7 +80,7 @@ Using this sample of the $\lambda$ parameter, we can also plot the posterior dis
 <br>
 
 ### Exponential Model with Covariates
-From the [Kaplan-Meier Survival Curves](#kaplan-meier-survival-curves) section, we can tell that senior and non-senior patients have distinct survival probabilities. Here we estimate the respective survival curve for each of the age group by linking the covariate *senior* (see the beginning part of the R code [02_plot_km_curve.R](02_plot_km_curve.R)) to the rate parameter:
+From the [Kaplan-Meier Survival Curves](#kaplan-meier-survival-curves) section, we can tell that senior and non-senior patients have distinct survival probabilities. Here we estimate the respective survival curve for each of the age group by linking the covariate *senior* (see the beginning part of the R code [02_plot_km_curve.R](code/02_plot_km_curve.R)) to the rate parameter:
 
 $$ \lambda = exp( \mu  + X \cdot \beta ),$$
 
